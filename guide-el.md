@@ -123,4 +123,17 @@ $ sudo sed -i s/jessie/trusty/g /etc/apt/sources.list.d/hvr-ghc-jessie.list
 - Αντί να χρησιμοποιήσετε το ήδη υπάρχον `cabal-install` εκτελέσιμο, πάρτε τον πηγαίο κώδικα and μετά εκτελέστε το
   `bootstrap.sh` script.
 
+## Fedora 21
+
+Για την εγκατάσταση της Haskell 7.8.4 από το ανεπίσημο αποθετήριο (η Fedora 22+ θα την περιλαμβάνει στο επίσημο):
+
+```bash
+$ sudo yum-config-manager --add-repo \
+> https://copr.fedoraproject.org/coprs/petersen/ghc-7.8.4/repo/fedora-21/petersen-ghc-7.8.4-fedora-21.repo 
+$ sudo yum install ghc cabal-install
+```
+
+Όπως περιγράφεται στο [petersen/ghc-7.8.4 copr page](https://copr.fedoraproject.org/coprs/petersen/ghc-7.8.4/)
+αυτός ο ghc δεν μπορεί να εγκατασταθεί παράλληλα με τον Fedora/EPEL ghc.
+
 *[TODO]: συνεχίζεται η μετάφραση*
