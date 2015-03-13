@@ -81,4 +81,36 @@ $ sudo apt-get install cabal-install-1.20 ghc-7.8.3 happy-1.19.4 alex-3.1.3
 
 *Προαιρετικό:* Μπορείτε επίσης να προσθέσετε `.cabal-sandbox/bin` στο path σας. Ο κώδικας που αναπτύσσετε ενεργά θα σας είναι διαθέσιμος από την γραμμή εντολών. Αυτό δουλεύει μόνο όταν η τρέχουσα θέση (directory) εργασίας είναι ένα sandbox.
 
+## Debian
+
+### Αποθετήριο GHC για debian stable
+
+Αν χρησιμοποιείτε Debian stable, είναι ευκολότερο να κάνετε χρήση του http://deb.haskell.org/.
+Για να το ενεργοποιήσετε:
+
+- Προσθέστε τη γραμμή `deb http://deb.haskell.org/stable/ ./` στο αρχείο `/etc/apt/sources.list`
+
+```bash
+## Προσθεσθε το σχετικό κλειδί GPG για να αποφύγετε προειδοποιήσεις:
+$ GET http://deb.haskell.org/deb.haskell.org.gpg-key | apt-key add -
+$ sudo apt-get update
+$ sudo apt-get install ghc-7.8.3 happy alex cabal-install
+```
+
+### Χρησιμοποιώντας το Ubuntu PPA
+
+Αν δεν χρησιμοποιείτε την έκδοση stable, μπορείτε να ακολουθήσετε τα ίδια βήματα όπως στο Ubuntu, αλλά θα πρέπει να εκτελέσετε μια επιπρόσθετη εντολή. αμέσως μετά την εκτέλεση του `sudo add-apt-repository -y ppa:hvr/ghc`, τρέξτε την εντολή:
+
+```bash
+$ sudo sed -i s/jessie/trusty/g /etc/apt/sources.list.d/hvr-ghc-jessie.list
+```
+
+Για άλλες εκδόσεις Debian, απλά αντικαταστήστε όλες της αναφορές `jessie` με το όνομα της έκδοσήσας όπως στην παραπάνω εντολή.
+
+Αν, για κάποιο λόγο, το αρχείο `/etc/apt/sources.list.d/hvr-ghc-jessie.list` δεν υπάρχει, τότε το αρχείο `/etc/apt/sources.list` θα πρέπει να περιέχει μια γραμμή σαν και αυτή:
+
+    deb http://ppa.launchpad.net/hvr/ghc/ubuntu jessie main
+
+Αντικαταστήστε το `jessie` με `trusty` σε αυτή τη γραμμή.
+
 *[TODO]: συνεχίζεται η μετάφραση*
