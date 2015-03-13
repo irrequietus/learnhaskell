@@ -56,4 +56,29 @@ H Haskell είναι μια γλώσσα προγραμματισμού που �
 
 To Cabal είναι ανάλογο του Ruby Bundler, Python pip, Node NPM, Maven κ.λ.π. Ενώ ο GHC διαχειρίζεται τα πακέτα λογισμικού από μόνος του, το Cabal επιλέγει ποιές εκδόσεις αυτών θα εγκατασταθούν.
 
+# Προχωρώντας με την εγκατάσταση
+
+## Ubuntu
+
+[Αυτό το PPA](http://launchpad.net/~hvr/+archive/ghc) είναι εξαιρετικό και το χρησιμοποιώ σε όλες τους υπολογιστές που αναπτύσσω ή ετοιμάζω προς τελική χρήση (build) πακέτα σε λειτουργικό βασισμένο στο Linux.
+
+Ειδικότερα:
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install python-software-properties # v12.04 και κάτω
+$ sudo apt-get install software-properties-common # v12.10 και άνω
+$ sudo add-apt-repository -y ppa:hvr/ghc
+$ sudo apt-get update
+$ sudo apt-get install cabal-install-1.20 ghc-7.8.3 happy-1.19.4 alex-3.1.3
+```
+
+Προσθέστε τα ακόλουθα στη μεταβλητή `$PATH` (bash\_profile, zshrc, bashrc, etc):
+
+```
+~/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.8.3/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin
+```
+
+*Προαιρετικό:* Μπορείτε επίσης να προσθέσετε `.cabal-sandbox/bin` στο path σας. Ο κώδικας που αναπτύσσετε ενεργά θα σας είναι διαθέσιμος από την γραμμή εντολών. Αυτό δουλεύει μόνο όταν η τρέχουσα θέση (directory) εργασίας είναι ένα sandbox.
+
 *[TODO]: συνεχίζεται η μετάφραση*
