@@ -113,4 +113,14 @@ $ sudo sed -i s/jessie/trusty/g /etc/apt/sources.list.d/hvr-ghc-jessie.list
 
 Αντικαταστήστε το `jessie` με `trusty` σε αυτή τη γραμμή.
 
+### Μεταγλωττίζοντας την Haskell από τον πηγαίο κώδικα
+
+Μπορείτε να ακολουθήσετε [αυτόν](http://www.davesquared.net/2014/05/platformless-haskell.html) τον οδηγό που έχει γραφεί για το Mac OS X.
+
+Σημειώσεις:
+
+- Θέσατε την τιμή prefix σωστά κατά τη διαδικασία προετοιμασίας μεταγλώττισης (configure) του ghc.
+- Αντί να χρησιμοποιήσετε το ήδη υπάρχον `cabal-install` εκτελέσιμο, πάρτε τον πηγαίο κώδικα and μετά εκτελέστε το
+  `bootstrap.sh` script.
+
 *[TODO]: συνεχίζεται η μετάφραση*
