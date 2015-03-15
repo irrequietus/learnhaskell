@@ -136,4 +136,63 @@ $ sudo yum install ghc cabal-install
 Όπως περιγράφεται στο [petersen/ghc-7.8.4 copr page](https://copr.fedoraproject.org/coprs/petersen/ghc-7.8.4/)
 αυτός ο ghc δεν μπορεί να εγκατασταθεί παράλληλα με τον Fedora/EPEL ghc.
 
+## Arch Linux
+
+Για να εγκαταστήσετε την Haskell στο Arch Linux, απλά εκτελέστε:
+
+```bash
+$ sudo pacman -S cabal-install ghc happy alex haddock
+```
+
+## Gentoo
+
+Στο Gentoo, μπορείτε να εγκαταστήσετε τα διαφορετικά τμήματα της πλατφόρμας Haskell μέσω του `portage`.
+Αν χρησιμοποιείτε `ACCEPT_KEYWORDS=arch` (αντί `ACCEPT_KEYWORDS=~arch`), το `portage` θα εγκαταστήσει απαρχαιωμένες εκδόσεις διαφόρων τμημάτων της Haskell.
+
+Έχοντας αυτό στο μυαλό, αν θέλετε να χρησιμοποιήσετε το `ACCEPT_KEYWORDS=arch`, προσθέστε τα παρακάτω στο αρχείο `/etc/portage/package.keywords`.
+
+    dev-haskell/cabal-install
+    dev-lang/ghc
+
+Μόλις γίνει αυτό,
+
+```bash
+$ emerge -jav dev-lang/ghc dev-haskell/cabal-install
+```
+
+To Gentoo διατηρεί μια "stable" (δηλαδή: παλιά) έκδοση του `cabal-install` στο δένδρο του portage, άρα θα θέλετε να χρησιμοποιήσετε το `cabal-install` για να εγκαταστήσετε την πιό πρόσφατη έκδοσή του. Σημειώστε ότι οι αντικάθετοι (backslashes) είναι εκ προθέσεως.
+
+```bash
+$ \cabal update                # αντικάθετοι
+$ \cabal install cabal-install # εκ προθέσεως
+```
+
+Μόλις εγκαταστήσατε το `cabal` με διαθεσιμότητα σε όλο το σύστημα σας μέσω του `portage` και τοπικά στο home directory σας μέσω του `cabal-install`.
+Το επόμενο βήμα είναι να βεβαιωθείτε ότι όταν θα εκτελέσετε την εντολή `cabal` σε ένα τερματικό, το περιβάλλον shell θα εκτελέσει την πιό πρόσφατη έκδοση του εντός του home directory σας.
+Θα θελήσετε να προσθέσετε τις παρακάτω γραμμές στο αρχείο ρυθμίσεων (configuration file) του περιβάλλοντος shell σας:
+
+```bash
+PATH=$PATH:$HOME/.cabal/bin
+alias cabal="$HOME/.cabal/bin/cabal"
+```
+
+Αν δεν γνωρίζετε πιό είναι το περιβάλλον shell που χρησιμοποιείτε, το πιθανότερο είναι να είναι το `bash`.
+Αν χρησιμοποιείτε το bash τότε το αρχείο που πρέπει να επεξεργαστείτε είναι το `~/.bashrc`.
+Αν χρησιμοποιείτε το zsh, το αρχείο είναι το `~/.zshrc`.
+Μπορείτε να τρέξετε την παρακάτω εντολή στο περιβάλλον shell σας για να δείτε πιό είναι.
+
+```bash
+echo $SHELL | xargs basename
+```
+
+Εγώ χρησιμοποιώ το zsh, και αυτή η εντολή δίνει ως αποτέλεσμα `zsh` όταν εκτελείται.
+
+Μόλις τα κάνετε όλα αυτά, θα θέλετε να εγκαταστήσετε τα επιπρόσθετα εργαλεία `alex` και `happy`.
+
+```bash
+$ cabal install alex happy
+```
+
+Συγχαρητήρια! Τώρα έχετε μια πλήρως λειτουργική εγκατάσταση της Haskell!
+
 *[TODO]: συνεχίζεται η μετάφραση*
